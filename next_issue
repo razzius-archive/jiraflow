@@ -1,12 +1,27 @@
 #!/usr/bin/env python
 
+"""
+Usage:
+
+$ read --silent JIRA_CREDENTIALS
+(enter user:pass)
+$ set -xg JIRA_AUTH "Basic "(echo -n $JIRA_CREDENTIALS | base64)
+$ ./next_issue
+"""
+
 import os
 
 import requests
 
 
 url = 'https://sighten.atlassian.net/rest/api/2/search?'
-jql = 'assignee = razzi AND status in ("In Development", "Ready For Development") AND issuetype != epic and sprint in opensprints() ORDER BY status, Sprint'
+
+jql = """
+assignee = razzi
+AND status in ("In Development", "Ready For Development")
+AND issuetype != epic and sprint in opensprints()
+ORDER BY status, Sprint
+"""
 
 response = requests.get(
     url,
