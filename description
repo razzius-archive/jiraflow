@@ -5,12 +5,20 @@ import os
 import requests
 
 
-url = 'https://sighten.atlassian.net/rest/api/2/search?'
-jql = 'assignee = razzi AND status in ("In Development", "Ready For Development") AND issuetype != epic and sprint in opensprints() ORDER BY status, Sprint'
+JQL = """
+assignee = razzi
+AND status in ("In Development", "Ready For Development")
+AND issuetype != epic and sprint in opensprints()
+ORDER BY status, Sprint
+"""
+
+
+URL = 'https://sighten.atlassian.net/rest/api/2/search'
+
 
 response = requests.get(
-    url,
-    params={'jql': jql, 'maxResults': 1},
+    URL,
+    params={'jql': JQL, 'maxResults': 1},
     headers={'Authorization': os.environ['JIRA_AUTH']}
 )
 
