@@ -1,11 +1,9 @@
 #!/usr/bin/env python
 
-"""
+"""\
 Usage:
 
-$ read --silent JIRA_CREDENTIALS
-(enter user:pass)
-$ set -xg JIRA_AUTH "Basic "(echo -n $JIRA_CREDENTIALS | base64)
+$ source ./read_jira_credentials
 $ ./next_issue
 """
 
@@ -14,19 +12,32 @@ import os
 import requests
 
 
+def help_message():
+    print(__doc__)
+    exit(1)
+
+
 url = 'https://sighten.atlassian.net/rest/api/2/search?'
 
-jql = """
-assignee = razzi
+JIRA_USER = os.environ.get('JIRA_USER')
+if JIRA_USER is None:
+    help_message()
+
+JQL = """
+assignee = {JIRA_USER}
 AND status in ("In Development", "Ready For Development")
 AND issuetype != epic and sprint in opensprints()
 ORDER BY status, Sprint
 """
 
+authorization = os.environ.get('JIRA_AUTH')
+if authorization is None:
+    help_message()
+
 response = requests.get(
     url,
-    params={'jql': jql, 'maxResults': 1},
-    headers={'Authorization': os.environ['JIRA_AUTH']}
+    params={'jql': JQL.format(JIRA_USER=JIRA_USER), 'maxResults': 1},
+    headers={'Authorization': authorization}
 )
 
 print(response.json()['issues'][0]['key'].lower())
