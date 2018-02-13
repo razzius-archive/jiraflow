@@ -1,6 +1,10 @@
 #!/usr/local/bin/fish
 
-set issue (next_issue)
+set issue (next_issue); or begin
+    echo Error with next_issue
+    exit 1
+end
+
 set branch razzi/$issue
 
 if not git show-ref --quiet $branch
