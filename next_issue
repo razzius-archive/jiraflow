@@ -12,7 +12,8 @@ import os
 import requests
 
 
-def help_message():
+def help_message(env):
+    print('Missing ${env}'.format(env=env))
     print(__doc__)
     exit(1)
 
@@ -21,7 +22,7 @@ url = 'https://sighten.atlassian.net/rest/api/2/search?'
 
 JIRA_USER = os.environ.get('JIRA_USER')
 if JIRA_USER is None:
-    help_message()
+    help_message('JIRA_USER')
 
 JQL = """
 assignee = {JIRA_USER}
@@ -32,7 +33,7 @@ ORDER BY status, Sprint
 
 authorization = os.environ.get('JIRA_AUTH')
 if authorization is None:
-    help_message()
+    help_message('JIRA_AUTH')
 
 response = requests.get(
     url,
