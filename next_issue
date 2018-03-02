@@ -7,15 +7,24 @@ $ source ./read_jira_credentials
 $ ./next_issue
 """
 
+from json.decoder import JSONDecodeError
 import os
+import sys
 
 import requests
 
 
+process_name = sys.argv[0]
+
+
+def error_out(message):
+    print('{}: {}'.format(process_name, message))
+    exit(1)
+
+
 def help_message(env):
     print('Missing ${env}'.format(env=env))
-    print(__doc__)
-    exit(1)
+    error_out(__doc__)
 
 
 url = 'https://sighten.atlassian.net/rest/api/2/search?'
@@ -41,4 +50,14 @@ response = requests.get(
     headers={'Authorization': authorization}
 )
 
-print(response.json()['issues'][0]['key'].lower())
+if response.status_code == 400:
+    error_out('inactive account')
+
+if response.status_code == 401:
+    error_out('bad password')
+
+try:
+    print(response.json()['issues'][0]['key'].lower())
+except JSONDecodeError:
+    print('{}: Bad auth'.format(process_name))
+    exit(1)
