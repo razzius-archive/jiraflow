@@ -41,15 +41,17 @@ Switched to branch 'razzi/prop-67'
 
 Prints the description of the current issue.
 
-## next_issue
+## `next_issue`
 
 Prints the next issue you should be working on. Used by `next`.
 
-## read_jira_credentials
+## `read_jira_credentials`
 
 Source this to be prompted for your Jira username and password, which will be used to set `JIRA_AUTH`.
 
 ## TODO
+
+This won't work with your Jira unless you have the same status names and fields. For now, manually edit lib.py.
 
 - Better misconfiguration checks
 - Easier installation
