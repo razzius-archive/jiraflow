@@ -5,7 +5,7 @@ set issue (next_issue); or begin
     exit 1
 end
 
-set branch razzi/$issue
+set branch $JIRA_INITIALS/$issue
 
 if not git show-ref --quiet $branch
     git checkout origin/develop
