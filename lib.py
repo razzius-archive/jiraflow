@@ -1,7 +1,7 @@
 import os
 
 
-JIRA_API_URL = os.environ['JIRA_API_URL']
+JIRA_SEARCH_URL = os.environ['JIRA_HOST'] + '/rest/api/2/search'
 
 OPEN_ISSUES_JQL = """
 assignee = {JIRA_USER}

@@ -9,8 +9,8 @@ You will need [fish](https://fishshell.com/) and python 3 installed.
 You will also need the following environment variables:
 
 - `JIRA_USER`
-- `JIRA_AUTH` - a base64-encoded USER:PASSWORD string. `source read_jira_credentials` can help you set it.
-- `JIRA_API_URL` - for example, https://sighten.atlassian.net/rest/api/2/search
+- `JIRA_AUTH` - a base64-encoded USER:PASSWORD string. `source read_jira_credentials` can help you set it. My username is my email. Account passwords are deprecated; make an auth token from your Jira security settings.
+- `JIRA_HOST` - for example, https://sighten.atlassian.net
 - `JIRA_INITIALS` - this is used, with the current issue number, to make a branch.
 
 For example, if `JIRA_INITIALS` is set to `razzi` and `next_issue` returns `PROP-67`, `./next` will checkout a branch named razzi/prop-67.

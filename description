@@ -4,13 +4,16 @@ import os
 
 import requests
 
-from lib import JIRA_API_URL, OPEN_ISSUES_JQL
+from lib import JIRA_SEARCH_URL, OPEN_ISSUES_JQL
 
 
 response = requests.get(
-    JIRA_API_URL,
-    params={'jql': OPEN_ISSUES_JQL.format(JIRA_USER=os.environ['JIRA_USER']), 'maxResults': 1},
-    headers={'Authorization': os.environ['JIRA_AUTH']}
+    JIRA_SEARCH_URL,
+    params={
+        'jql': OPEN_ISSUES_JQL.format(JIRA_USER=os.environ['JIRA_USER']),
+        'maxResults': 1,
+    },
+    headers={'Authorization': os.environ['JIRA_AUTH']},
 )
 
 print(response.json()['issues'][0]['fields']['description'])
