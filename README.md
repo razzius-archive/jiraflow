@@ -20,10 +20,8 @@ It's called `JIRA_INITIALS` because many people use their first and last name's 
 # Install
 
 ```
-$ git clone https://github.com/razzius/jiraflow
-$ cd jiraflow
 $ pip install -r requirements.txt
-$ ln -s next /usr/local/bin/  # et cetera
+$ make install
 ```
 
 # Commands
