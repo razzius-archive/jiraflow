@@ -1,4 +1,4 @@
-#!/usr/local/bin/fish
+#!/usr/bin/env fish
 
 set issue (next_issue); or begin
     echo Error with next_issue
