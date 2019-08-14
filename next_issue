@@ -34,17 +34,13 @@ def debug_response(response):
     pprint(response.json())
 
 
-JIRA_USER = os.environ.get('JIRA_USER')
-if JIRA_USER is None:
-    help_message('JIRA_USER')
-
 authorization = os.environ.get('JIRA_AUTH')
 if authorization is None:
     help_message('JIRA_AUTH')
 
 response = requests.get(
     JIRA_SEARCH_URL,
-    params={'jql': OPEN_ISSUES_JQL.format(JIRA_USER=JIRA_USER), 'maxResults': 1},
+    params={'jql': OPEN_ISSUES_JQL, 'maxResults': 1},
     headers={'Authorization': authorization},
 )
 

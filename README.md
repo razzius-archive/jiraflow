@@ -8,10 +8,9 @@ You will need [fish](https://fishshell.com/) and python 3 installed.
 
 You will also need the following environment variables:
 
-- `JIRA_USER`
-- `JIRA_AUTH` - a base64-encoded USER:PASSWORD string. `source read_jira_credentials` can help you set it. My username is my email. Account passwords are deprecated; make an auth token from your Jira security settings (navigate to "Manage account").
-- `JIRA_HOST` - for example, https://sighten.atlassian.net
-- `JIRA_INITIALS` - this is used, with the current issue number, to make a branch.
+- `JIRA_AUTH` - a base64-encoded USER:PASSWORD string. `source read_jira_credentials` can help you set it. My username is my email and I made an API token at https://id.atlassian.com/manage/api-tokens.
+- `JIRA_HOST` - for example, hettps://sighten.atlassian.net
+- `JIRA_INITIALS` - this is used, with the current issue number, to make a branch based on the issue number.
 
 For example, if `JIRA_INITIALS` is set to `razzi` and `next_issue` returns `PROP-67`, `./next` will checkout a branch named razzi/prop-67.
 
@@ -55,5 +54,3 @@ Source this to be prompted for your Jira username and password, which will be us
 ## TODO
 
 This won't work with your Jira unless you have the same status names and fields. For now, manually edit lib.py.
-
-- Define `description` as a composition of the raw issue data with [jq](https://github.com/stedolan/jq)
