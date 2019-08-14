@@ -36,6 +36,10 @@ Switched to branch 'razzi/prop-67'
 ~/project (razzi/prop-67) $
 ```
 
+## `open-issue`
+
+Open the current issue to be worked on.
+
 ## `description`
 
 Prints the description of the current issue.
