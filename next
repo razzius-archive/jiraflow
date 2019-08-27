@@ -7,9 +7,8 @@ end
 
 set branch $JIRA_INITIALS/$issue
 
-if not git show-ref --quiet $branch
-    git checkout origin/develop
-    git checkout -b $branch
+if not git show-ref --quiet refs/heads/$branch
+    git switch -c $branch origin/develop
 else
-    git checkout $branch
+    git switch $branch
 end
