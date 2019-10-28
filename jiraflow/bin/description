@@ -1,2 +1,2 @@
 #!/bin/sh
-issue_data.py | jq -r '.issues[0].fields.description'
+issue_data | jq -r '.issues[0].fields.description'
