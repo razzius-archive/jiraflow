@@ -13,6 +13,7 @@ requests = "^2.22"
 [tool.poetry.scripts]
 next_issue = "jiraflow.next_issue:main"
 issue_data = "jiraflow.issue_data:main"
+open_issue = "jiraflow.open_issue:main"
 
 [build-system]
 requires = ["poetry>=0.12"]

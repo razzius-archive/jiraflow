@@ -34,7 +34,7 @@ def debug_response(response):
     pprint(response.json())
 
 
-def main():
+def get_issue_key():
     authorization = os.environ.get('JIRA_AUTH')
     if authorization is None:
         help_message('JIRA_AUTH')
@@ -55,10 +55,16 @@ def main():
         error_out('bad password')
 
     try:
-        print(response.json()['issues'][0]['key'].lower())
+        return response.json()['issues'][0]['key'].lower()
     except JSONDecodeError:
         print('{}: Bad auth'.format(process_name))
         exit(1)
+
+
+def main():
+    issue_key = get_issue_key()
+
+    print(issue_key)
 
 
 if __name__ == '__main__':

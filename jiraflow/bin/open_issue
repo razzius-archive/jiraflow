@@ -1,2 +1,0 @@
-#!/usr/bin/env fish
-open $JIRA_HOST/browse/(next_issue)
